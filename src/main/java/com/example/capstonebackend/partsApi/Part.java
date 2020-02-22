@@ -32,10 +32,8 @@ public class Part {
     @Column
     private Integer price;
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
+    @ManyToMany
+
     @JoinTable(
             name = "vehicles_parts",
             joinColumns = @JoinColumn(name = "part_id"),

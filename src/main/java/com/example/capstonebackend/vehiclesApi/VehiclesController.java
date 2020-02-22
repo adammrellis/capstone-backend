@@ -1,13 +1,12 @@
 package com.example.capstonebackend.vehiclesApi;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/vehicles")
@@ -17,8 +16,11 @@ public class VehiclesController {
     @Autowired
     private final VehiclesService vehiclesService;
 
-    public VehiclesController(VehiclesService vehiclesService) {
+    private final EntityManager em;
+
+    public VehiclesController(VehiclesService vehiclesService, EntityManager em) {
         this.vehiclesService = vehiclesService;
+        this.em = em;
     }
 
     @GetMapping
@@ -51,8 +53,15 @@ public class VehiclesController {
     }
 
     @DeleteMapping("/{id}")
+    @Transactional
     public Integer removeOneVehicle(@PathVariable int id) {
         Vehicle vehicle = vehiclesService.getOneVehicle(id).orElseThrow(IllegalArgumentException::new);
+
+        Query q1 = em.createNativeQuery("delete from vehicles_parts where vehicle_id = ?");
+        q1.setParameter(1, id);
+        em.joinTransaction();
+        q1.executeUpdate();
+
         return vehiclesService.removeOneVehicle(id);
     }
 }

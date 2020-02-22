@@ -1,12 +1,10 @@
 package com.example.capstonebackend.partsApi;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -16,7 +14,7 @@ public class PartsController {
     @Autowired
     private final PartsService partsService;
 
-    public PartsController(PartsService partsService) {
+    public PartsController(PartsService partsService, EntityManager em) {
         this.partsService = partsService;
     }
 
@@ -35,9 +33,7 @@ public class PartsController {
     public Part addOnePart(@RequestBody Part newPart) {
         if(newPart.getPart_name() == null
                 || newPart.getPart_type() == null
-                || newPart.getImage() == null
-                || newPart.getIn_cart() == null
-                || newPart.getPrice() == null) {
+                || newPart.getImage() == null) {
             throw new IllegalArgumentException("Not all fields are valid. Go back and make sure all fields are valid " +
                     "before API call is made.");
         }

@@ -8,7 +8,7 @@ INSERT INTO vehicles(year_range,make,model,image) VALUES ('2004-2006','Jeep','Wr
 
 
 --Parts
-INSERT INTO parts(part_name,part_type,image,in_cart,price) VALUES ('3 Link Long-Arm Kit','Front Suspension','https://www.ruffstuffspecialties.com/catalog/graphics/00000001/R1036-CAD-full.jpg',true, 1200)
+INSERT INTO parts(part_name,part_type,image,in_cart,price) VALUES ('3 Link Long-Arm Kit','Front Suspension','https://www.ruffstuffspecialties.com/catalog/graphics/00000001/R1036-CAD-full.jpg',false, 1200)
 INSERT INTO parts(part_name,part_type,image,in_cart,price) VALUES ('Rock Sliders for TJ','Chassis Protection','https://cdn.shopify.com/s/files/1/0124/7336/8672/products/img_2059_400x.jpg?v=1569806179',false, 350)
 INSERT INTO parts(part_name,part_type,image,in_cart,price) VALUES ('Rock Sliders for XJ','Chassis Protection','https://cdn.shopify.com/s/files/1/0124/7336/8672/products/dsc0681_400x.jpg?v=1569806179',false, 350)
 INSERT INTO parts(part_name,part_type,image,in_cart,price) VALUES ('Rock Sliders for LJ','Chassis Protection','https://cdn.shopify.com/s/files/1/0124/7336/8672/products/img_2059_400x.jpg?v=1569806179',false, 350)
